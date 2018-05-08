@@ -160,7 +160,7 @@ Transform:
   m_PrefabParentObject: {fileID: 4424515376842622, guid: 9fe8c2c2905e698439e9ef0fabd29d6f,
     type: 2}
   m_PrefabInternal: {fileID: 200350351}
---- !u!1001 &798077043
+--- !u!1001 &753447748
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -204,15 +204,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 200350352}
-    - target: {fileID: 114972677042576948, guid: ccd0e91cb34fecd4ab34631814667571,
-        type: 2}
-      propertyPath: dampTime
-      value: 0.3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccd0e91cb34fecd4ab34631814667571, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1371924209
+--- !u!1001 &1395827167
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
