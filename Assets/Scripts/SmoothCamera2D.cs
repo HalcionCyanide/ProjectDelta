@@ -12,7 +12,8 @@ public class SmoothCamera2D : MonoBehaviour
 
     private void Update()
     {
-    #region CROSS-DEVICE STUFF
+        ///Very important!
+        #region Define the touch position (CrossPlatform)
 #if (UNITY_IOS || UNITY_ANDROID)
         if (Input.touchCount > 0)
         {
@@ -25,11 +26,12 @@ public class SmoothCamera2D : MonoBehaviour
         }
 #endif
     #endregion
+        //If we have something to lockon to...
         if (target)
         {
             target.transform.GetComponent<DragShotMover>().selfSelected = true;
 
-            #region IF BUTTON PRESS
+            #region If Button pressed...
 #if (UNITY_IOS || UNITY_ANDROID)
             if (Input.touchCount > 0)
 #else
@@ -65,9 +67,10 @@ public class SmoothCamera2D : MonoBehaviour
                 }
             }
         }
+        //We don't have anything to Lockon to, find one!
         else
         {
-            #region IF BUTTON PRESS
+            #region If Button pressed...
 #if (UNITY_IOS || UNITY_ANDROID)
             if (Input.touchCount > 0)
 #else
@@ -101,7 +104,7 @@ public class SmoothCamera2D : MonoBehaviour
     {
         if (target)
         {
-            #region FOCUS CAM
+            #region Lockon to target
             Vector3 point = Camera.main.WorldToViewportPoint(target.position);
             Vector3 delta = target.position - Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
             Vector3 destination = transform.position + delta;
@@ -110,7 +113,7 @@ public class SmoothCamera2D : MonoBehaviour
         }
         else
         {
-            #region FREE CAM
+            #region Allow Freecam
             //Do FreeCam here.
             //Do PinchToZoom here.
             #endregion

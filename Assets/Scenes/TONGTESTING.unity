@@ -204,11 +204,6 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 200350352}
-    - target: {fileID: 114972677042576948, guid: ccd0e91cb34fecd4ab34631814667571,
-        type: 2}
-      propertyPath: dampTime
-      value: 0.3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccd0e91cb34fecd4ab34631814667571, type: 2}
   m_IsPrefabParent: 0
