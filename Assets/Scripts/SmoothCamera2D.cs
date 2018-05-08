@@ -3,40 +3,38 @@ using System.Collections;
 
 public class SmoothCamera2D : MonoBehaviour
 {
+    [Tooltip("Target To Follow")]
+    public Transform target;
 
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
-    public Transform target;
 
     Vector3 clickLocation;
+
+    float defaultZoom;
+
+    //FreeCam
+    Vector3 touchOrigin;
+    public float panSpeed = 4.0f;
+
+    private void Start()
+    {
+        defaultZoom = Camera.main.orthographicSize;
+    }
 
     private void Update()
     {
         ///Very important!
         #region Define the touch position (CrossPlatform)
-#if (UNITY_IOS || UNITY_ANDROID)
-        if (Input.touchCount > 0)
-        {
-            clickLocation = Input.GetTouch(0).position;
-        }
-#else
-        if (Input.GetMouseButtonDown(0))
-        {
-            clickLocation = Input.mousePosition;
-        }
-#endif
-    #endregion
+        clickLocation = GetComponent<MouseBehaviours>().CPgetTouchLocation(0);
+        #endregion
         //If we have something to lockon to...
         if (target)
         {
             target.transform.GetComponent<DragShotMover>().selfSelected = true;
 
             #region If Button pressed...
-#if (UNITY_IOS || UNITY_ANDROID)
-            if (Input.touchCount > 0)
-#else
-            if (Input.GetMouseButtonDown(0))
-#endif
+            if (GetComponent<MouseBehaviours>().CPgetTouch(0))
             #endregion
             {
                 //Fire a ray in 2D space to check for player.
@@ -71,11 +69,7 @@ public class SmoothCamera2D : MonoBehaviour
         else
         {
             #region If Button pressed...
-#if (UNITY_IOS || UNITY_ANDROID)
-            if (Input.touchCount > 0)
-#else
-            if (Input.GetMouseButtonDown(0))
-#endif
+            if (GetComponent<MouseBehaviours>().CPgetTouch(0))
             #endregion
             {
                 //Fire a ray in 2D space to check for player.
@@ -105,6 +99,8 @@ public class SmoothCamera2D : MonoBehaviour
         if (target)
         {
             #region Lockon to target
+            Camera.main.orthographicSize = Mathf.LerpUnclamped(Camera.main.orthographicSize, defaultZoom, dampTime);
+
             Vector3 point = Camera.main.WorldToViewportPoint(target.position);
             Vector3 delta = target.position - Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
             Vector3 destination = transform.position + delta;
@@ -113,10 +109,32 @@ public class SmoothCamera2D : MonoBehaviour
         }
         else
         {
-            #region Allow Freecam
             //Do FreeCam here.
-            //Do PinchToZoom here.
+            #region Allow Freecam
+            if (Input.GetMouseButtonDown(1))
+            {
+                touchOrigin = GetComponent<MouseBehaviours>().CPgetTouchLocation(1);
+            }
+            if (Input.GetMouseButton(1))
+            {
+                
+            }
+
             #endregion
+
+            //Do Zoom here.
+            #region Zoom
+
+#if (UNITY_IOS || UNITY_ANDROID)
+    //Run this for mobile.
+    GetComponent<MouseBehaviours>().PinchZoom();
+#else
+
+            Camera.main.orthographicSize += Input.mouseScrollDelta.y;
+    //Clamp Orthographic CameraSize
+    Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize, 1f);
+#endif
+    #endregion
         }
     }
 }
