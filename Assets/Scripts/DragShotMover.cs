@@ -5,7 +5,6 @@ public class DragShotMover : MonoBehaviour
 {
     bool canDrag;
 
-    [HideInInspector]
     public bool selfSelected;
 
     private void Start()

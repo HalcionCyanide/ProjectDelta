@@ -27,6 +27,8 @@ public class SmoothCamera2D : MonoBehaviour
     #endregion
         if (target)
         {
+            target.transform.GetComponent<DragShotMover>().selfSelected = true;
+
             #region IF BUTTON PRESS
 #if (UNITY_IOS || UNITY_ANDROID)
             if (Input.touchCount > 0)
@@ -55,6 +57,8 @@ public class SmoothCamera2D : MonoBehaviour
                 }
                 else
                 {
+                    //We used to have a target, make sure they are not selected.
+                    target.transform.GetComponent<DragShotMover>().selfSelected = false;
                     //If we hit nothing
                     //Remove the target.
                     target = null;
