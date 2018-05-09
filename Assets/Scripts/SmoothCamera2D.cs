@@ -3,7 +3,6 @@ using System.Collections;
 
 public class SmoothCamera2D : MonoBehaviour
 {
-
     public float dampTime = 0.15f;
     public Transform target;
 
@@ -20,25 +19,28 @@ public class SmoothCamera2D : MonoBehaviour
     {
         ///Very important!
         #region Define the touch position (CrossPlatform)
-#if (UNITY_IOS || UNITY_ANDROID)
-        if (Input.touchCount > 0)
+        if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
         {
-            clickLocation = Input.GetTouch(0).position;
+            if (Input.touchCount > 0)
+            {
+                clickLocation = Input.GetTouch(0).position;
+            }
         }
-#else
-        if (Input.GetMouseButtonDown(0))
+        else
         {
-            clickLocation = Input.mousePosition;
+            if (Input.GetMouseButtonDown(0))
+            {
+                clickLocation = Input.mousePosition;
+            }
         }
-#endif
-    #endregion
+        #endregion
         //If we have something to lockon to...
         if (target)
         {
             target.transform.GetComponent<DragShotMover>().selfSelected = true;
 
             #region If Button pressed...
-#if (UNITY_IOS || UNITY_ANDROID)
+#if (!UNITY_STANDALONE)
             if (Input.touchCount > 0)
 #else
             if (Input.GetMouseButtonDown(0))
@@ -59,6 +61,8 @@ public class SmoothCamera2D : MonoBehaviour
                     {
                         //We used to have a target, make sure they are not selected.
                         target.transform.GetComponent<DragShotMover>().selfSelected = false;
+                        target.transform.GetComponent<DragShotMover>().startLocation = Vector3.zero;
+                        target.transform.GetComponent<DragShotMover>().releaseLocation = Vector3.zero;
                         //Remove the target.
                         target = null;
                     }
@@ -67,6 +71,8 @@ public class SmoothCamera2D : MonoBehaviour
                 {
                     //We used to have a target, make sure they are not selected.
                     target.transform.GetComponent<DragShotMover>().selfSelected = false;
+                    target.transform.GetComponent<DragShotMover>().startLocation = Vector3.zero;
+                    target.transform.GetComponent<DragShotMover>().releaseLocation = Vector3.zero;
                     //If we hit nothing
                     //Remove the target.
                     target = null;
@@ -77,7 +83,7 @@ public class SmoothCamera2D : MonoBehaviour
         else
         {
             #region If Button pressed...
-#if (UNITY_IOS || UNITY_ANDROID)
+#if (!UNITY_STANDALONE)
             if (Input.touchCount > 0)
 #else
             if (Input.GetMouseButtonDown(0))

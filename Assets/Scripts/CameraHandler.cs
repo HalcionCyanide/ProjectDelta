@@ -12,18 +12,12 @@ public class CameraHandler : MonoBehaviour
     public Vector2 BoundsY = new Vector2(-15f, 15f);
     public Vector2 ZoomBounds = new Vector2(1f, 15f);
 
-    private Camera cam;
 
-    private Vector3 lastPanPosition;
-    private int panFingerId; // Touch mode only
+    Vector3 lastPanPosition;
+    int panFingerId; // Touch mode only
 
-    private bool wasZoomingLastFrame; // Touch mode only
-    private Vector2[] lastZoomPositions; // Touch mode only
-
-    void Awake()
-    {
-        cam = GetComponent<Camera>();
-    }
+    bool wasZoomingLastFrame; // Touch mode only
+    Vector2[] lastZoomPositions; // Touch mode only
 
     void Update()
     {
@@ -89,7 +83,7 @@ public class CameraHandler : MonoBehaviour
     void HandleMouse()
     {
         // On mouse down, capture it's position.
-        // Otherwise, if the mouse is still down, pan the camera.
+        // Otherwise, if the mouse is still down, pan the Camera.
         if (Input.GetMouseButtonDown(0))
         {
             lastPanPosition = Input.mousePosition;
@@ -99,7 +93,7 @@ public class CameraHandler : MonoBehaviour
             PanCamera(Input.mousePosition);
         }
 
-        // Check for scrolling to zoom the camera
+        // Check for scrolling to zoom the Camera
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         ZoomCamera(scroll, ZoomSpeedMouse);
     }
@@ -108,14 +102,14 @@ public class CameraHandler : MonoBehaviour
     {
         if(!GetComponent<SmoothCamera2D>().target)
         {
-            // Determine how much to move the camera
-            Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
+            // Determine how much to move the Camera
+            Vector3 offset = Camera.main.ScreenToViewportPoint(lastPanPosition - newPanPosition);
             Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
 
             // Perform the movement
             transform.Translate(move, Space.World);
 
-            // Ensure the camera remains within bounds.
+            // Ensure the Camera remains within bounds.
             Vector3 pos = transform.position;
             pos.x = Mathf.Clamp(transform.position.x, BoundsX[0], BoundsX[1]);
             pos.y = Mathf.Clamp(transform.position.y, BoundsY[0], BoundsY[1]);
@@ -133,6 +127,6 @@ public class CameraHandler : MonoBehaviour
             return;
         }
 
-        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
     }
 }

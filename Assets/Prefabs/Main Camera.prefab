@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanSpeed: 10
-  ZoomSpeedTouch: 0.1
-  ZoomSpeedMouse: 0.5
-  BoundsX: {x: -10, y: 10}
-  BoundsY: {x: -10, y: 10}
+  ZoomSpeedTouch: 0.2
+  ZoomSpeedMouse: 1
+  BoundsX: {x: -15, y: 15}
+  BoundsY: {x: -15, y: 15}
   ZoomBounds: {x: 1, y: 15}
 --- !u!114 &114972677042576948
 MonoBehaviour:

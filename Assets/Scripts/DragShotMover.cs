@@ -6,6 +6,12 @@ public class DragShotMover : MonoBehaviour
     public bool canDrag;
     public bool selfSelected;
 
+    [HideInInspector]
+    public Vector3 startLocation;
+    [HideInInspector]
+    public Vector3 releaseLocation;
+    Vector3 clickLocation;
+
     private void Start()
     {
         //Initialize all variables.
@@ -24,6 +30,8 @@ public class DragShotMover : MonoBehaviour
         else
         {
             canDrag = false;
+            //startLocation = Vector3.zero;
+            //releaseLocation = Vector3.zero;
         }
         #endregion
     }
@@ -36,12 +44,76 @@ public class DragShotMover : MonoBehaviour
             //If I am allowed movement...
             if(canDrag)
             {
-                #region Perform all drag operations here.
-
-                //Drag to launch code here.
-
+                ///Very important!
+                #region Define the touch position (CrossPlatform)
+                if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
+                {
+                    if (Input.touchCount > 0)
+                    {
+                        clickLocation = Input.GetTouch(0).position;
+                    }
+                }
+                else
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        clickLocation = Input.mousePosition;
+                    }
+                }
                 #endregion
+
+                RaycastHit2D hit = Physics2D.Raycast(
+                    new Vector2(
+                        Camera.main.ScreenToWorldPoint(clickLocation).x,
+                        Camera.main.ScreenToWorldPoint(clickLocation).y),
+                    Vector2.zero,
+                    0);
+                if(hit)
+                {
+                    #region Perform all drag operations here.
+                    if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
+                    {
+                        HandleTouch();
+                    }
+                    else
+                    {
+                        HandleDrag();
+                    }
+                    #endregion
+                }
             }
+        }
+    }
+
+    void HandleTouch()
+    {
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                //store the touch location
+                startLocation = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                //calculate and release
+                releaseLocation = touch.position;
+            }
+        }
+    }
+
+    void HandleDrag()
+    {
+        if(Input.GetMouseButtonUp(0))
+        {
+            //calculate and release
+            releaseLocation = Input.mousePosition;
+        }
+        else if(Input.GetMouseButtonDown(0))
+        {
+            //store the touch location
+            startLocation = Input.mousePosition;
         }
     }
 }
