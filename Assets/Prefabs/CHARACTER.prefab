@@ -95,16 +95,16 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 0.7853982
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: af30cc39e3878dc47a85aa36f78b1d6a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &58596388488257130
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -133,5 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDrag: 0
   selfSelected: 0
+  maximumShootPower: 100
   startLocation: {x: 0, y: 0, z: 0}
   releaseLocation: {x: 0, y: 0, z: 0}

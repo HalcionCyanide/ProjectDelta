@@ -5,6 +5,7 @@ public class DragShotMover : MonoBehaviour
 {
     public bool canDrag;
     public bool selfSelected;
+    public float maximumShootPower = 100f;
 
     [HideInInspector]
     public Vector3 startLocation;
@@ -79,6 +80,8 @@ public class DragShotMover : MonoBehaviour
                     {
                         HandleDrag();
                     }
+                    //Drag Code here.
+                    
                     #endregion
                 }
             }
@@ -99,21 +102,31 @@ public class DragShotMover : MonoBehaviour
             {
                 //calculate and release
                 releaseLocation = touch.position;
+                Feuer();
             }
         }
     }
 
     void HandleDrag()
     {
-        if(Input.GetMouseButtonUp(0))
-        {
-            //calculate and release
-            releaseLocation = Input.mousePosition;
-        }
-        else if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
             //store the touch location
             startLocation = Input.mousePosition;
         }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            //calculate and release
+            releaseLocation = Input.mousePosition;
+            Feuer();
+        }
+    }
+
+    void Feuer()
+    {
+        Vector3 shootDirection = (releaseLocation - startLocation).normalized;
+        float shootPower = (releaseLocation - startLocation).magnitude;
+        shootPower = Mathf.Clamp(shootPower, 50, 1000);
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDirection.x, shootDirection.y) * shootPower);
     }
 }
