@@ -17,7 +17,7 @@ public class DragShotMover : MonoBehaviour
     {
         #region Find out if the player is allowed to move.
         //usually use extremely small numbers, like 0 or < 0.1
-        if (GetComponent<Rigidbody2D>().velocity.magnitude == 0) //< 0.1f)
+        if (selfSelected && GetComponent<Rigidbody2D>().velocity.magnitude == 0) //< 0.1f)
         {
             canDrag = true;
         }

@@ -5,10 +5,16 @@ public class SmoothCamera2D : MonoBehaviour
 {
 
     public float dampTime = 0.15f;
-    private Vector3 velocity = Vector3.zero;
     public Transform target;
 
+    Vector3 Velocity = Vector3.zero;
     Vector3 clickLocation;
+    float defaultZoom;
+
+    private void Awake()
+    {
+        defaultZoom = Camera.main.orthographicSize;
+    }
 
     private void Update()
     {
@@ -105,17 +111,12 @@ public class SmoothCamera2D : MonoBehaviour
         if (target)
         {
             #region Lockon to target
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, defaultZoom, dampTime);
+
             Vector3 point = Camera.main.WorldToViewportPoint(target.position);
             Vector3 delta = target.position - Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
             Vector3 destination = transform.position + delta;
-            transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
-            #endregion
-        }
-        else
-        {
-            #region Allow Freecam
-            //Do FreeCam here.
-            //Do PinchToZoom here.
+            transform.position = Vector3.SmoothDamp(transform.position, destination, ref Velocity, dampTime);
             #endregion
         }
     }

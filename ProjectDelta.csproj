@@ -242,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoxBuilder.cs" />
+    <Compile Include="Assets\Scripts\CameraHandler.cs" />
     <Compile Include="Assets\Scripts\DragShotMover.cs" />
     <Compile Include="Assets\Scripts\SmoothCamera2D.cs" />
   </ItemGroup>

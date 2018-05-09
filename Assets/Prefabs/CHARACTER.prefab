@@ -131,4 +131,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9321fe093fa20442ae16b3aac14576d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDrag: 0
   selfSelected: 0
