@@ -124,7 +124,7 @@ public class DragShotMover : MonoBehaviour
 
     void Feuer()
     {
-        Vector3 shootDirection = (releaseLocation - startLocation).normalized;
+        Vector3 shootDirection = -(releaseLocation - startLocation).normalized;
         float shootPower = (releaseLocation - startLocation).magnitude;
         shootPower = Mathf.Clamp(shootPower, 50, 1000);
         GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDirection.x, shootDirection.y) * shootPower);
