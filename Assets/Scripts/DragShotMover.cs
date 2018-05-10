@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class DragShotMover : MonoBehaviour
 {
     public bool canDrag;
     public bool selfSelected;
-    public float maximumShootPower = 100f;
+    public float minimumShootPower = 100f;
+    public float maximumShootPower = 1000f;
 
     [HideInInspector]
     public Vector3 startLocation;
@@ -27,12 +28,12 @@ public class DragShotMover : MonoBehaviour
         if (selfSelected && GetComponent<Rigidbody2D>().velocity.magnitude == 0) //< 0.1f)
         {
             canDrag = true;
+            GameObject.Find("fireText").GetComponent<Text>().text = "Can SHOOT";
         }
         else
         {
             canDrag = false;
-            //startLocation = Vector3.zero;
-            //releaseLocation = Vector3.zero;
+            GameObject.Find("fireText").GetComponent<Text>().text = "Cannot SHOOT";
         }
         #endregion
     }
@@ -126,7 +127,10 @@ public class DragShotMover : MonoBehaviour
     {
         Vector3 shootDirection = -(releaseLocation - startLocation).normalized;
         float shootPower = (releaseLocation - startLocation).magnitude;
-        shootPower = Mathf.Clamp(shootPower, 50, 1000);
+        shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
+
+        Debug.Log("Shot with power " + shootPower.ToString() + " in direction " + shootDirection);
+
         GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDirection.x, shootDirection.y) * shootPower);
     }
 }

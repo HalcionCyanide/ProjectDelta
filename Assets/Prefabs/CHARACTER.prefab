@@ -133,6 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDrag: 0
   selfSelected: 0
-  maximumShootPower: 100
+  maximumShootPower: 1000
   startLocation: {x: 0, y: 0, z: 0}
   releaseLocation: {x: 0, y: 0, z: 0}
