@@ -591,6 +591,16 @@ Prefab:
       propertyPath: activeOnLoad
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114204758921253316, guid: 38dd66ed157d5764a86600a0204c15eb,
+        type: 2}
+      propertyPath: fadeInTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204758921253316, guid: 38dd66ed157d5764a86600a0204c15eb,
+        type: 2}
+      propertyPath: fadeOutTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38dd66ed157d5764a86600a0204c15eb, type: 2}
   m_IsPrefabParent: 0
@@ -633,7 +643,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1755949425
 MonoBehaviour:
@@ -667,7 +677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: INSERT NAME
+  m_Text: PROJECT DELTA
 --- !u!222 &1755949426
 CanvasRenderer:
   m_ObjectHideFlags: 0

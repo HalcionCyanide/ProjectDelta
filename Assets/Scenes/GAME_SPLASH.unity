@@ -256,11 +256,6 @@ Prefab:
       propertyPath: splashImage
       value: 
       objectReference: {fileID: 1703002738}
-    - target: {fileID: 114204758921253316, guid: 38dd66ed157d5764a86600a0204c15eb,
-        type: 2}
-      propertyPath: loadLevel
-      value: GAME_MAIN
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38dd66ed157d5764a86600a0204c15eb, type: 2}
   m_IsPrefabParent: 0

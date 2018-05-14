@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeOnLoad: 1
-  fadeInTime: 1.5
+  fadeInTime: 2.5
   fadeOutTime: 2.5
   splashImage: {fileID: 0}
-  loadLevel: 
+  loadLevel: GAME_MAIN
 --- !u!124 &124228282939203502
 Behaviour:
   m_ObjectHideFlags: 1
