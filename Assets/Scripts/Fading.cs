@@ -11,13 +11,13 @@ public class Fading : MonoBehaviour
     public Image splashImage;
     public string loadLevel;
 
-    public void StartFade()
+    public void StartFade(string levelName)
     {
-        StartCoroutine(LoadScene());
+        StartCoroutine(LoadScene(levelName));
         //level loader uses the index if needed.
     }
 
-    IEnumerator LoadScene()
+    IEnumerator LoadScene(string levelName)
     {
         splashImage.canvasRenderer.SetAlpha(0.0f);
 
@@ -25,7 +25,7 @@ public class Fading : MonoBehaviour
         yield return new WaitForSeconds(fadeOutTime);
         //FadeOut();
         //yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene(loadLevel);
+        SceneManager.LoadScene(levelName);
     }
 
     IEnumerator Start()
