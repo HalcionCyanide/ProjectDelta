@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114597454529488606, guid: 9fe8c2c2905e698439e9ef0fabd29d6f,
+        type: 2}
+      propertyPath: powerArrow
+      value: 
+      objectReference: {fileID: 1433239215}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9fe8c2c2905e698439e9ef0fabd29d6f, type: 2}
   m_IsPrefabParent: 0
@@ -359,6 +364,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42494b658811faa4a84bf317bfe060a0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1433239215 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1641124355714906, guid: 42494b658811faa4a84bf317bfe060a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1433239214}
 --- !u!1 &1795879994
 GameObject:
   m_ObjectHideFlags: 0
