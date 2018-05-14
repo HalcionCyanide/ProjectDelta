@@ -7,12 +7,18 @@ public class DragShotMover : MonoBehaviour
     public bool selfSelected;
     public float minimumShootPower = 100f;
     public float maximumShootPower = 1000f;
+    public int powerBoostFactor = 2;
+
+    public GameObject powerArrow;
 
     [HideInInspector]
-    public Vector3 startLocation;
+    public Vector2 startLocation;
     [HideInInspector]
-    public Vector3 releaseLocation;
-    Vector3 clickLocation;
+    public Vector2 releaseLocation;
+
+
+    Vector2 clickLocation;
+    Vector2 mockLocation;
 
     private void Start()
     {
@@ -103,34 +109,71 @@ public class DragShotMover : MonoBehaviour
             {
                 //calculate and release
                 releaseLocation = touch.position;
+                powerArrow.SetActive(false);
                 Feuer();
+            }
+            else if (touch.phase == TouchPhase.Moved)
+            {
+                //scale arrow
+                powerArrow.SetActive(true);
+                mockLocation = touch.position;
+                ScaleArrow();
             }
         }
     }
 
     void HandleDrag()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             //store the touch location
             startLocation = Input.mousePosition;
         }
-        else if(Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0))
         {
             //calculate and release
             releaseLocation = Input.mousePosition;
+            powerArrow.SetActive(false);
             Feuer();
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            //scale arrow
+            powerArrow.SetActive(true);
+            mockLocation = Input.mousePosition;
+            ScaleArrow();
         }
     }
 
     void Feuer()
     {
-        Vector3 shootDirection = -(releaseLocation - startLocation).normalized;
-        float shootPower = (releaseLocation - startLocation).magnitude;
+        Vector2 shootDirection = -(releaseLocation - startLocation).normalized;
+        float shootPower = Vector2.Distance(releaseLocation,startLocation) * powerBoostFactor;
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
         Debug.Log("Shot with power " + shootPower.ToString() + " in direction " + shootDirection);
 
         GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDirection.x, shootDirection.y) * shootPower);
+    }
+
+    void ScaleArrow()
+    {
+
+        float shootPower = Vector2.Distance(mockLocation, startLocation) * powerBoostFactor;
+        shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
+
+        //scale factor is power represented as a percentage of power range, 
+        //multiplied by the scaling range of the arrow (1, 10)
+        float FactorToScaleBy = (shootPower / (maximumShootPower - minimumShootPower)) * 10;
+        powerArrow.transform.localScale = new Vector3(FactorToScaleBy, FactorToScaleBy, 1);
+
+        //calculate shooting direction
+        Vector2 shootDirection = -(mockLocation - startLocation).normalized;
+        float ang = Vector2.Angle(shootDirection, Vector2.right);
+        Vector3 Angle = Vector3.Cross(shootDirection, Vector2.right);
+        if (Angle.z > 0)
+            ang = 360 - ang;
+            
+        powerArrow.transform.eulerAngles = new Vector3(0, 0, 180 + ang);
     }
 }

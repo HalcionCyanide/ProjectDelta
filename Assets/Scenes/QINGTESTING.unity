@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114597454529488606, guid: 9fe8c2c2905e698439e9ef0fabd29d6f,
+        type: 2}
+      propertyPath: powerArrow
+      value: 
+      objectReference: {fileID: 2047296264}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9fe8c2c2905e698439e9ef0fabd29d6f, type: 2}
   m_IsPrefabParent: 0
@@ -360,6 +365,11 @@ MonoBehaviour:
   sizeOfBox: {x: 40, y: 30}
   offset: {x: -20, y: -15}
   BoxPrefab: {fileID: 1763841377925276, guid: 0cb139ab809aec547a0b4bed89896ed5, type: 2}
+--- !u!1 &2047296264 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1641124355714906, guid: 42494b658811faa4a84bf317bfe060a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1162953848}
 --- !u!1001 &2106200858
 Prefab:
   m_ObjectHideFlags: 0
