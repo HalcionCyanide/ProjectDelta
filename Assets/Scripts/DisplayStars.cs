@@ -25,7 +25,7 @@ public class DisplayStars : MonoBehaviour {
         //no prior starData
         if(!starData)
         {
-            Debug.Log("No prior savefile found, creating new file");
+            Debug.Log("No prior star file found, creating new file");
             //number of commas = levels - 1
             for (int i = 0; i < numberofLevels - 1; i++)
             {
