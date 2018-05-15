@@ -243,6 +243,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoxBuilder.cs" />
     <Compile Include="Assets\Scripts\CameraHandler.cs" />
+    <Compile Include="Assets\Scripts\DisplayStars.cs" />
     <Compile Include="Assets\Scripts\DragShotMover.cs" />
     <Compile Include="Assets\Scripts\Fading.cs" />
     <Compile Include="Assets\Scripts\QuitGame.cs" />

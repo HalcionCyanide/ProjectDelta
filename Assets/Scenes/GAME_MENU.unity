@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 46041597}
   m_Layer: 5
   m_Name: Button (2)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 87957732}
   m_Layer: 5
   m_Name: Button (2)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 88161491}
   m_Layer: 5
   m_Name: Button (3)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 194470244}
   m_Layer: 5
   m_Name: Button (1)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 352836613}
   m_Layer: 5
   m_Name: Button (4)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1278,6 +1278,7 @@ GameObject:
   - component: {fileID: 822428761}
   - component: {fileID: 822428760}
   - component: {fileID: 822428759}
+  - component: {fileID: 822428763}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1366,6 +1367,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &822428763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 822428758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18a60554a25a0d4c924d8178db37abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starPrefab: {fileID: 1327589102539018, guid: 1b9a0278444cc1c4ca9791b682a94709, type: 2}
+  levelBlocks:
+  - {fileID: 1593769463}
+  - {fileID: 1110388309}
+  - {fileID: 787613435}
+  - {fileID: 1737758792}
+  - {fileID: 422370371}
+  - {fileID: 674246765}
+  - {fileID: 744212300}
+  - {fileID: 2130119162}
+  - {fileID: 1934004755}
+  - {fileID: 2102066652}
+  - {fileID: 1500936767}
+  - {fileID: 877821771}
+  - {fileID: 1166168275}
+  - {fileID: 889458466}
+  - {fileID: 1180589451}
 --- !u!1 &866585632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,7 +1723,7 @@ GameObject:
   - component: {fileID: 901313929}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2138,7 +2167,7 @@ GameObject:
   - component: {fileID: 1371739718}
   m_Layer: 5
   m_Name: Button (3)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2479,7 +2508,7 @@ GameObject:
   - component: {fileID: 1501076923}
   m_Layer: 5
   m_Name: Button (4)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2590,7 +2619,7 @@ GameObject:
   - component: {fileID: 1575553331}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2701,7 +2730,7 @@ GameObject:
   - component: {fileID: 1579110711}
   m_Layer: 5
   m_Name: Button (3)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2933,7 +2962,7 @@ GameObject:
   - component: {fileID: 1589451663}
   m_Layer: 5
   m_Name: Button (1)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3141,7 +3170,7 @@ GameObject:
   - component: {fileID: 1649926005}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3460,7 +3489,7 @@ GameObject:
   - component: {fileID: 1755480823}
   m_Layer: 5
   m_Name: Button (1)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3692,7 +3721,7 @@ GameObject:
   - component: {fileID: 1844494353}
   m_Layer: 5
   m_Name: Button (2)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4431,7 +4460,7 @@ GameObject:
   - component: {fileID: 2142798936}
   m_Layer: 5
   m_Name: Button (4)
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
