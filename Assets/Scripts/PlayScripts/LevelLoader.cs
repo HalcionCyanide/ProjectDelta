@@ -17,55 +17,63 @@ public class LevelLoader : MonoBehaviour {
     //Object ID 100
     public GameObject endFlagOBJ;
 
+    public string levelOverride;
+    TextAsset levelData;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
         if (!String.IsNullOrEmpty(GameManagement.Instance.levelToAccess))
         {
             //load the level file to a storage space in memory
-            TextAsset levelData = Resources.Load("Levels/level" + GameManagement.Instance.levelToAccess) as TextAsset;
+            levelData = Resources.Load("Levels/level" + GameManagement.Instance.levelToAccess) as TextAsset;
             //unload the value from the loader, we copied the data already.
             GameManagement.Instance.levelToAccess = null;
+        }
+        else
+        {
+            levelData = Resources.Load("Levels/level" + levelOverride) as TextAsset;
+        }
+        BuildLevel();
+	}
 
-            //read the level file and make it
-            GameObject lvlHolder = new GameObject("levelHolder");
-            LevelLayoutArray = SplitCsvGrid(levelData.text);
-            textRow = new string[LevelLayoutArray.GetUpperBound(0)];
-            int height = ((LevelLayoutArray.Length / textRow.Length) - 1);
-            int width = textRow.Length - 1;
+    void BuildLevel()
+    {
+        //read the level file and make it
+        GameObject lvlHolder = new GameObject("levelHolder");
+        LevelLayoutArray = SplitCsvGrid(levelData.text);
+        textRow = new string[LevelLayoutArray.GetUpperBound(0)];
 
-            float offsetX = width % 2 == 0 ? 0.5f : 0.0f;
-            float offsetY = -0.5f; //compulsory
+        int height = ((LevelLayoutArray.Length / textRow.Length) - 1);
+        int width = textRow.Length - 1;
 
-            for (int y = height - 1; y >= 0; y--) // height
+        for (int y = 0; y < height; y++) // height
+        {
+            for (int x = 0; x < width; x++)
             {
-                for (int x = 0; x < width; x++)
-                {
-                    Vector3 objPos = new Vector3(x - (width >> 1) + offsetX, (-y + (height >> 1) + offsetY), 0);
+                Vector3 objPos = new Vector3(x, y, 0);
 
-                    switch(LevelLayoutArray[x, y])
-                    {
-                        case "-1": //player
-                            GameObject player = Instantiate(playerPrefab, objPos, Quaternion.identity);
-                            Camera.main.GetComponent<SmoothCamera2D>().target = player.transform;
-                            player.GetComponent<DragShotMover>().powerArrow = GameObject.FindGameObjectWithTag("Arrow");
-                            break;
-                        case "0": //wall
-                            GameObject wall = Instantiate(wallPrefab, objPos, Quaternion.identity);
-                            wall.transform.SetParent(lvlHolder.transform);
-                            break;
-                        case "99": //star
-                            break;
-                        case "100": //endFlag
-                            break;
-                        default:
-                            //nothing here.
-                            break;
-                    }
+                switch (LevelLayoutArray[x, y])
+                {
+                    case "-1": //player
+                        GameObject player = Instantiate(playerPrefab, objPos, Quaternion.identity);
+                        Camera.main.GetComponent<SmoothCamera2D>().target = player.transform;
+                        player.GetComponent<DragShotMover>().powerArrow = GameObject.FindGameObjectWithTag("Arrow");
+                        break;
+                    case "0": //wall
+                        GameObject wall = Instantiate(wallPrefab, objPos, Quaternion.identity);
+                        wall.transform.SetParent(lvlHolder.transform);
+                        break;
+                    case "99": //star
+                        break;
+                    case "100": //endFlag
+                        break;
+                    default:
+                        //nothing here.
+                        break;
                 }
             }
         }
-	}
+    }
     // splits a CSV file into a 2D string array
     static public string[,] SplitCsvGrid(string csvText)
     {

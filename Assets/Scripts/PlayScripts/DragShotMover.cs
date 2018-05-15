@@ -34,12 +34,10 @@ public class DragShotMover : MonoBehaviour
         if (selfSelected && GetComponent<Rigidbody2D>().velocity.magnitude == 0) //< 0.1f)
         {
             canDrag = true;
-            GameObject.Find("fireText").GetComponent<Text>().text = "Can SHOOT";
         }
         else
         {
             canDrag = false;
-            GameObject.Find("fireText").GetComponent<Text>().text = "Cannot SHOOT";
         }
         #endregion
     }

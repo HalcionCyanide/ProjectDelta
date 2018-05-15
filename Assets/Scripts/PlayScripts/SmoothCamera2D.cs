@@ -38,7 +38,6 @@ public class SmoothCamera2D : MonoBehaviour
         if (target)
         {
             target.transform.GetComponent<DragShotMover>().selfSelected = true;
-            GameObject.Find("sampletext").GetComponent<Text>().text = "LOCK-ON";
             #region If Button pressed...
 #if (!UNITY_STANDALONE)
             if (Input.touchCount > 0)
@@ -82,7 +81,6 @@ public class SmoothCamera2D : MonoBehaviour
         //We don't have anything to Lockon to, find one!
         else
         {
-            GameObject.Find("sampletext").GetComponent<Text>().text = "FREECAM";
             #region If Button pressed...
 #if (!UNITY_STANDALONE)
             if (Input.touchCount > 0)

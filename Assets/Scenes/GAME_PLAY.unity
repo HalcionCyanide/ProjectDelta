@@ -117,7 +117,7 @@ NavMeshSettings:
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114466791630931368, guid: 42494b658811faa4a84bf317bfe060a0,
     type: 2}
-  m_PrefabInternal: {fileID: 1162953848}
+  m_PrefabInternal: {fileID: 763886885}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &753447748
 Prefab:
@@ -158,41 +158,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114972677042576948, guid: ccd0e91cb34fecd4ab34631814667571,
+    - target: {fileID: 114395957301072720, guid: ccd0e91cb34fecd4ab34631814667571,
         type: 2}
-      propertyPath: target
+      propertyPath: splashImage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 236243514}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccd0e91cb34fecd4ab34631814667571, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &753447749 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1044700221949366, guid: ccd0e91cb34fecd4ab34631814667571,
-    type: 2}
-  m_PrefabInternal: {fileID: 753447748}
---- !u!114 &753447750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 753447749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d09b3223cd11e3439308e07c3663218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeOnLoad: 0
-  fadeInTime: 2.5
-  fadeOutTime: 2.5
-  splashImage: {fileID: 236243514}
-  loadLevel: 
---- !u!20 &1021508032 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20283865388860006, guid: ccd0e91cb34fecd4ab34631814667571,
-    type: 2}
-  m_PrefabInternal: {fileID: 753447748}
---- !u!1001 &1162953848
+--- !u!1001 &763886885
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -294,18 +268,14 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1021508032}
-    - target: {fileID: 1641124355714906, guid: 42494b658811faa4a84bf317bfe060a0, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212112832012867800, guid: 42494b658811faa4a84bf317bfe060a0,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42494b658811faa4a84bf317bfe060a0, type: 2}
   m_IsPrefabParent: 0
+--- !u!20 &1021508032 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20283865388860006, guid: ccd0e91cb34fecd4ab34631814667571,
+    type: 2}
+  m_PrefabInternal: {fileID: 753447748}
 --- !u!1 &1417415324
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +321,7 @@ MonoBehaviour:
   wallPrefab: {fileID: 1763841377925276, guid: 0cb139ab809aec547a0b4bed89896ed5, type: 2}
   StarOBJ: {fileID: 0}
   endFlagOBJ: {fileID: 0}
+  levelOverride: 1
 --- !u!1001 &2106200858
 Prefab:
   m_ObjectHideFlags: 0
