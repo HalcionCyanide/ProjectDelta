@@ -10,7 +10,7 @@ public class SmoothCamera2D : MonoBehaviour
     Vector3 clickLocation;
     float defaultZoom;
 
-    private void Awake()
+    private void Start()
     {
         defaultZoom = Camera.main.orthographicSize;
     }

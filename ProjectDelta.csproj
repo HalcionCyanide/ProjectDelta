@@ -241,14 +241,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BoxBuilder.cs" />
-    <Compile Include="Assets\Scripts\CameraHandler.cs" />
-    <Compile Include="Assets\Scripts\DisplayStars.cs" />
-    <Compile Include="Assets\Scripts\DragShotMover.cs" />
     <Compile Include="Assets\Scripts\Fading.cs" />
-    <Compile Include="Assets\Scripts\LevelAccess.cs" />
-    <Compile Include="Assets\Scripts\QuitGame.cs" />
-    <Compile Include="Assets\Scripts\SmoothCamera2D.cs" />
+    <Compile Include="Assets\Scripts\GameManagement.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\DisplayStars.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\LevelAccess.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\LevelFile.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\QuitGame.cs" />
+    <Compile Include="Assets\Scripts\PlayScripts\BoxBuilder.cs" />
+    <Compile Include="Assets\Scripts\PlayScripts\CameraHandler.cs" />
+    <Compile Include="Assets\Scripts\PlayScripts\DragShotMover.cs" />
+    <Compile Include="Assets\Scripts\PlayScripts\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\PlayScripts\SmoothCamera2D.cs" />
+    <Compile Include="Assets\Scripts\SingletonTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\PlayerData\Access.txt" />

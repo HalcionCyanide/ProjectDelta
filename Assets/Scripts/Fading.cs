@@ -19,12 +19,14 @@ public class Fading : MonoBehaviour
 
     IEnumerator LoadScene(string levelName)
     {
+        splashImage.enabled = true;
         splashImage.canvasRenderer.SetAlpha(0.0f);
 
         FadeIn();
-        yield return new WaitForSeconds(fadeOutTime);
+        yield return new WaitForSeconds(fadeInTime);
         //FadeOut();
         //yield return new WaitForSeconds(2.5f);
+        splashImage.enabled = false;
         SceneManager.LoadScene(levelName);
     }
 
@@ -36,7 +38,7 @@ public class Fading : MonoBehaviour
             splashImage.canvasRenderer.SetAlpha(0.0f);
 
             FadeIn();
-            yield return new WaitForSeconds(fadeOutTime);
+            yield return new WaitForSeconds(fadeInTime);
             FadeOut();
             yield return new WaitForSeconds(fadeOutTime);
             SceneManager.LoadScene(loadLevel);

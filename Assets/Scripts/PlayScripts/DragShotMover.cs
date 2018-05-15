@@ -109,13 +109,13 @@ public class DragShotMover : MonoBehaviour
             {
                 //calculate and release
                 releaseLocation = touch.position;
-                powerArrow.SetActive(false);
+                powerArrow.GetComponent<Renderer>().enabled = false;
                 Feuer();
             }
             else if (touch.phase == TouchPhase.Moved)
             {
                 //scale arrow
-                powerArrow.SetActive(true);
+                powerArrow.GetComponent<Renderer>().enabled = true;
                 mockLocation = touch.position;
                 ScaleArrow();
             }
@@ -133,13 +133,13 @@ public class DragShotMover : MonoBehaviour
         {
             //calculate and release
             releaseLocation = Input.mousePosition;
-            powerArrow.SetActive(false);
+            powerArrow.GetComponent<Renderer>().enabled = false;
             Feuer();
         }
         else if (Input.GetMouseButton(0))
         {
             //scale arrow
-            powerArrow.SetActive(true);
+            powerArrow.GetComponent<Renderer>().enabled = true;
             mockLocation = Input.mousePosition;
             ScaleArrow();
         }
@@ -158,7 +158,6 @@ public class DragShotMover : MonoBehaviour
 
     void ScaleArrow()
     {
-
         float shootPower = Vector2.Distance(mockLocation, startLocation) * powerBoostFactor;
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
