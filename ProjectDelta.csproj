@@ -248,6 +248,7 @@
     <Compile Include="Assets\Scripts\MenuScripts\LevelFile.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\QuitGame.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\BoxBuilder.cs" />
+    <Compile Include="Assets\Scripts\PlayScripts\CameraExtensions.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\CameraHandler.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\DragShotMover.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\LevelLoader.cs" />

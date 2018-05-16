@@ -20,19 +20,22 @@ public class LevelLoader : MonoBehaviour {
     public string levelOverride;
     TextAsset levelData;
 
+    //level completion info:
+    [HideInInspector]
+    public int starCount;
+
     // Use this for initialization
     void Awake () {
         if (!String.IsNullOrEmpty(GameManagement.Instance.levelToAccess))
         {
             //load the level file to a storage space in memory
             levelData = Resources.Load("Levels/level" + GameManagement.Instance.levelToAccess) as TextAsset;
-            //unload the value from the loader, we copied the data already.
-            GameManagement.Instance.levelToAccess = null;
         }
         else
         {
             levelData = Resources.Load("Levels/level" + levelOverride) as TextAsset;
         }
+        starCount = 0;
         BuildLevel();
 	}
 
@@ -46,18 +49,22 @@ public class LevelLoader : MonoBehaviour {
         int height = ((LevelLayoutArray.Length / textRow.Length) - 1);
         int width = textRow.Length - 1;
 
+        float cameraHalfWidth = Camera.main.OrthographicBounds().size.x / 2;
+        float cameraHalfHeight = Camera.main.OrthographicBounds().size.y / 2;
+        Camera.main.GetComponent<SmoothCamera2D>().SetCameraClamp(new Vector2(cameraHalfWidth - 0.5f, width - cameraHalfWidth - 0.5f), new Vector2(cameraHalfHeight - 0.5f, height - cameraHalfHeight - 0.5f));
+        Camera.main.GetComponent<CameraHandler>().BoundsX = new Vector2(cameraHalfWidth - 0.5f, width - cameraHalfWidth - 0.5f);
+        Camera.main.GetComponent<CameraHandler>().BoundsY = new Vector2(cameraHalfHeight - 0.5f, height - cameraHalfHeight - 0.5f);
         for (int y = 0; y < height; y++) // height
         {
             for (int x = 0; x < width; x++)
             {
                 Vector3 objPos = new Vector3(x, y, 0);
 
-                switch (LevelLayoutArray[x, y])
+                switch (LevelLayoutArray[x, height - y - 1])
                 {
                     case "-1": //player
                         GameObject player = Instantiate(playerPrefab, objPos, Quaternion.identity);
                         Camera.main.GetComponent<SmoothCamera2D>().target = player.transform;
-                        player.GetComponent<DragShotMover>().powerArrow = GameObject.FindGameObjectWithTag("Arrow");
                         break;
                     case "0": //wall
                         GameObject wall = Instantiate(wallPrefab, objPos, Quaternion.identity);
@@ -74,6 +81,19 @@ public class LevelLoader : MonoBehaviour {
             }
         }
     }
+
+    public void CompleteLevel()
+    {
+        GameManagement.Instance.ChangeAccessLevel(Int32.Parse(GameManagement.Instance.levelToAccess));
+        GameManagement.Instance.WriteStarsToLevel(Int32.Parse(GameManagement.Instance.levelToAccess), starCount);
+        UnloadLevel();
+    }
+
+    public void UnloadLevel()
+    {
+        GameManagement.Instance.levelToAccess = null;
+    }
+
     // splits a CSV file into a 2D string array
     static public string[,] SplitCsvGrid(string csvText)
     {

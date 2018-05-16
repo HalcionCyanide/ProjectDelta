@@ -7,24 +7,27 @@ public class DragShotMover : MonoBehaviour
     public bool selfSelected;
     public float minimumShootPower = 100f;
     public float maximumShootPower = 1000f;
-    public int powerBoostFactor = 2;
+    public float powerBoostFactor = 1.5f;
 
-    public GameObject powerArrow;
+    GameObject powerArrow;
 
     [HideInInspector]
     public Vector2 startLocation;
     [HideInInspector]
     public Vector2 releaseLocation;
+    [HideInInspector]
+    public Vector2 mockLocation;
 
 
     Vector2 clickLocation;
-    Vector2 mockLocation;
 
     private void Start()
     {
         //Initialize all variables.
         canDrag = false;
         selfSelected = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        powerArrow = transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -38,6 +41,7 @@ public class DragShotMover : MonoBehaviour
         else
         {
             canDrag = false;
+            powerArrow.GetComponent<Renderer>().enabled = false;
         }
         #endregion
     }
@@ -47,6 +51,7 @@ public class DragShotMover : MonoBehaviour
         //Self is selected, camera is focused on you.
         if(selfSelected)
         {
+
             //If I am allowed movement...
             if(canDrag)
             {
@@ -145,7 +150,7 @@ public class DragShotMover : MonoBehaviour
 
     void Feuer()
     {
-        Vector2 shootDirection = -(releaseLocation - startLocation).normalized;
+        Vector2 shootDirection = (releaseLocation - startLocation).normalized;
         float shootPower = Vector2.Distance(releaseLocation,startLocation) * powerBoostFactor;
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
@@ -160,12 +165,12 @@ public class DragShotMover : MonoBehaviour
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
         //scale factor is power represented as a percentage of power range, 
-        //multiplied by the scaling range of the arrow (1, 10)
-        float FactorToScaleBy = (shootPower / (maximumShootPower - minimumShootPower)) * 10;
+        //multiplied by the scaling range of the arrow (0, 1)
+        float FactorToScaleBy = (shootPower / (maximumShootPower - minimumShootPower));
         powerArrow.transform.localScale = new Vector3(FactorToScaleBy, FactorToScaleBy, 1);
 
         //calculate shooting direction
-        Vector2 shootDirection = -(mockLocation - startLocation).normalized;
+        Vector2 shootDirection = (mockLocation - startLocation).normalized;
         float ang = Vector2.Angle(shootDirection, Vector2.right);
         Vector3 Angle = Vector3.Cross(shootDirection, Vector2.right);
         if (Angle.z > 0)

@@ -10,6 +10,9 @@ public class SmoothCamera2D : MonoBehaviour
     Vector3 clickLocation;
     float defaultZoom;
 
+    Vector2 xClamp;
+    Vector2 yClamp;
+
     private void Start()
     {
         defaultZoom = Camera.main.orthographicSize;
@@ -104,6 +107,9 @@ public class SmoothCamera2D : MonoBehaviour
                         //We will deal with the dragging on the player end.
                         hit.transform.GetComponent<DragShotMover>().selfSelected = true;
                         target = hit.transform;
+                        target.GetComponent<DragShotMover>().startLocation = Vector2.zero;
+                        target.GetComponent<DragShotMover>().releaseLocation = Vector2.zero;
+                        target.GetComponent<DragShotMover>().mockLocation = Vector2.zero;
                     }
                 }
             }
@@ -122,7 +128,18 @@ public class SmoothCamera2D : MonoBehaviour
             Vector3 delta = target.position - Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
             Vector3 destination = transform.position + delta;
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref Velocity, dampTime);
+
+            Vector3 copyVec = transform.position;
+            copyVec.x = Mathf.Clamp(copyVec.x, xClamp.x, xClamp.y);
+            copyVec.y = Mathf.Clamp(copyVec.y, yClamp.x, yClamp.y);
+            transform.position = copyVec;
             #endregion
         }
+    }
+
+    public void SetCameraClamp(Vector2 xclamp, Vector2 yclamp)
+    {
+        xClamp = xclamp;
+        yClamp = yclamp;
     }
 }
