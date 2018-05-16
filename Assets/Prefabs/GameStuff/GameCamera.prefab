@@ -118,8 +118,8 @@ MonoBehaviour:
   PanSpeed: 10
   ZoomSpeedTouch: 0.2
   ZoomSpeedMouse: 1
-  BoundsX: {x: -15, y: 15}
-  BoundsY: {x: -15, y: 15}
+  BoundsX: {x: -30, y: 30}
+  BoundsY: {x: -30, y: 30}
   ZoomBounds: {x: 1, y: 15}
 --- !u!114 &114972677042576948
 MonoBehaviour:

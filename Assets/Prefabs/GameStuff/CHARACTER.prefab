@@ -163,10 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDrag: 0
   selfSelected: 0
-  minimumShootPower: 100
-  maximumShootPower: 1000
-  powerBoostFactor: 1.5
-  powerArrow: {fileID: 0}
+  maximumShootPower: 500
   startLocation: {x: 0, y: 0}
   releaseLocation: {x: 0, y: 0}
   mockLocation: {x: 0, y: 0}

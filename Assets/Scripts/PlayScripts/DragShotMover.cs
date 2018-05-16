@@ -5,9 +5,8 @@ public class DragShotMover : MonoBehaviour
 {
     public bool canDrag;
     public bool selfSelected;
-    public float minimumShootPower = 100f;
     public float maximumShootPower = 1000f;
-    public float powerBoostFactor = 1.5f;
+    public float minimumShootPower = 100f;
 
     GameObject powerArrow;
 
@@ -150,8 +149,9 @@ public class DragShotMover : MonoBehaviour
 
     void Feuer()
     {
-        Vector2 shootDirection = (releaseLocation - startLocation).normalized;
-        float shootPower = Vector2.Distance(releaseLocation,startLocation) * powerBoostFactor;
+        Vector2 shootDirection = -(releaseLocation - startLocation).normalized;
+
+        float shootPower = Vector2.Distance(releaseLocation,startLocation);
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
         Debug.Log("Shot with power " + shootPower.ToString() + " in direction " + shootDirection);
@@ -161,16 +161,21 @@ public class DragShotMover : MonoBehaviour
 
     void ScaleArrow()
     {
-        float shootPower = Vector2.Distance(mockLocation, startLocation) * powerBoostFactor;
+        float shootPower = Vector2.Distance(mockLocation, startLocation);
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
         //scale factor is power represented as a percentage of power range, 
         //multiplied by the scaling range of the arrow (0, 1)
-        float FactorToScaleBy = (shootPower / (maximumShootPower - minimumShootPower));
+        float FactorToScaleBy = shootPower / maximumShootPower;
+
         powerArrow.transform.localScale = new Vector3(FactorToScaleBy, FactorToScaleBy, 1);
+        Vector3 copyVec = powerArrow.transform.localScale;
+        copyVec.x = Mathf.Clamp(copyVec.x, minimumShootPower / maximumShootPower, 1);
+        copyVec.y = Mathf.Clamp(copyVec.y, minimumShootPower / maximumShootPower, 1);
+        powerArrow.transform.localScale = copyVec;
 
         //calculate shooting direction
-        Vector2 shootDirection = (mockLocation - startLocation).normalized;
+        Vector2 shootDirection = -(mockLocation - startLocation).normalized;
         float ang = Vector2.Angle(shootDirection, Vector2.right);
         Vector3 Angle = Vector3.Cross(shootDirection, Vector2.right);
         if (Angle.z > 0)

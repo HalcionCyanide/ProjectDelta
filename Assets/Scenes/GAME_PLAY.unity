@@ -163,26 +163,6 @@ Prefab:
       propertyPath: splashImage
       value: 
       objectReference: {fileID: 236243514}
-    - target: {fileID: 114767853734693662, guid: ccd0e91cb34fecd4ab34631814667571,
-        type: 2}
-      propertyPath: BoundsX.x
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114767853734693662, guid: ccd0e91cb34fecd4ab34631814667571,
-        type: 2}
-      propertyPath: BoundsX.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114767853734693662, guid: ccd0e91cb34fecd4ab34631814667571,
-        type: 2}
-      propertyPath: BoundsY.x
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114767853734693662, guid: ccd0e91cb34fecd4ab34631814667571,
-        type: 2}
-      propertyPath: BoundsY.y
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccd0e91cb34fecd4ab34631814667571, type: 2}
   m_IsPrefabParent: 0
@@ -236,7 +216,7 @@ MonoBehaviour:
   wallPrefab: {fileID: 1763841377925276, guid: 0cb139ab809aec547a0b4bed89896ed5, type: 2}
   StarOBJ: {fileID: 0}
   endFlagOBJ: {fileID: 0}
-  levelOverride: 2
+  levelOverride: 1
   starCount: 0
 --- !u!1001 &1909036301
 Prefab:
