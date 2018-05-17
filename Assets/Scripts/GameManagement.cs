@@ -86,13 +86,7 @@ public class GameManagement : SingletonTemplate<GameManagement> {
 
     public void CompleteLevel()
     {
-        ChangeAccessLevel(Int32.Parse(levelToAccess));
+        ChangeAccessLevel(Int32.Parse(levelToAccess) + 1);
         WriteStarsToLevel(Int32.Parse(levelToAccess), starCount);
-        UnloadLevel();
-    }
-
-    public void UnloadLevel()
-    {
-        levelToAccess = null;
     }
 }

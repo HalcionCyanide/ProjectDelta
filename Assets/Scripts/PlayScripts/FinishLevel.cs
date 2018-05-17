@@ -2,12 +2,24 @@
 
 public class FinishLevel : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    GameObject endPanel;
+
+    private void Awake()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        endPanel = GameObject.FindGameObjectWithTag("UI_FINISH");
+        endPanel.SetActive(false);
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
             GameManagement.Instance.CompleteLevel();
             gameObject.GetComponent<Collider2D>().enabled = false;
+
+            //activate the level complete thing
+            endPanel.SetActive(true);
         }
     }
 }

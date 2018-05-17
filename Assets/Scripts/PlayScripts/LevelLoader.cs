@@ -34,6 +34,7 @@ public class LevelLoader : MonoBehaviour {
         else
         {
             levelData = Resources.Load("Levels/level" + levelOverride) as TextAsset;
+            GameManagement.Instance.levelToAccess = levelOverride;
         }
         starCount = 0;
         BuildLevel();
@@ -71,8 +72,12 @@ public class LevelLoader : MonoBehaviour {
                         wall.transform.SetParent(lvlHolder.transform);
                         break;
                     case "99": //star
+                        GameObject star = Instantiate(StarOBJ, objPos, Quaternion.identity);
+                        star.transform.SetParent(lvlHolder.transform);
                         break;
                     case "100": //endFlag
+                        GameObject endFlag = Instantiate(endFlagOBJ, objPos, Quaternion.identity);
+                        endFlag.transform.SetParent(lvlHolder.transform);
                         break;
                     default:
                         //nothing here.

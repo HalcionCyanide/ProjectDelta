@@ -169,7 +169,7 @@ public class DragShotMover : MonoBehaviour
         float shootPower = Vector2.Distance(releaseLocation,startLocation);
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
-        Debug.Log("Shot with power " + shootPower.ToString() + " in direction " + shootDirection);
+    
 
         GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDirection.x, shootDirection.y) * shootPower);
     }

@@ -253,6 +253,7 @@
     <Compile Include="Assets\Scripts\PlayScripts\DragShotMover.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\FinishLevel.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\PlayScripts\LoadStars.cs" />
     <Compile Include="Assets\Scripts\SingletonTemplate.cs" />
     <Compile Include="Assets\Scripts\ToggleActive.cs" />
   </ItemGroup>
