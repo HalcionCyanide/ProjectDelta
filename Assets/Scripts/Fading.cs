@@ -24,8 +24,6 @@ public class Fading : MonoBehaviour
 
         FadeIn();
         yield return new WaitForSeconds(fadeInTime);
-        //FadeOut();
-        //yield return new WaitForSeconds(2.5f);
         splashImage.enabled = false;
         SceneManager.LoadScene(levelName);
     }
