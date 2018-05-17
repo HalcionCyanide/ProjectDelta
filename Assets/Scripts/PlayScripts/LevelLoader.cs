@@ -51,7 +51,7 @@ public class LevelLoader : MonoBehaviour {
 
         float cameraHalfWidth = Camera.main.OrthographicBounds().size.x / 2;
         float cameraHalfHeight = Camera.main.OrthographicBounds().size.y / 2;
-        Camera.main.GetComponent<SmoothCamera2D>().SetCameraClamp(new Vector2(cameraHalfWidth - 0.5f, width - cameraHalfWidth - 0.5f), new Vector2(cameraHalfHeight - 0.5f, height - cameraHalfHeight - 0.5f));
+        Camera.main.GetComponent<CameraHandler>().SetBounds(new Vector2(cameraHalfWidth - 0.5f, width - cameraHalfWidth - 0.5f), new Vector2(cameraHalfHeight - 0.5f, height - cameraHalfHeight - 0.5f));
         Camera.main.GetComponent<CameraHandler>().BoundsX = new Vector2(cameraHalfWidth - 0.5f, width - cameraHalfWidth - 0.5f);
         Camera.main.GetComponent<CameraHandler>().BoundsY = new Vector2(cameraHalfHeight - 0.5f, height - cameraHalfHeight - 0.5f);
         for (int y = 0; y < height; y++) // height
@@ -64,7 +64,7 @@ public class LevelLoader : MonoBehaviour {
                 {
                     case "-1": //player
                         GameObject player = Instantiate(playerPrefab, objPos, Quaternion.identity);
-                        Camera.main.GetComponent<SmoothCamera2D>().target = player.transform;
+                        Camera.main.GetComponent<CameraHandler>().target = player.transform;
                         break;
                     case "0": //wall
                         GameObject wall = Instantiate(wallPrefab, objPos, Quaternion.identity);
@@ -80,18 +80,6 @@ public class LevelLoader : MonoBehaviour {
                 }
             }
         }
-    }
-
-    public void CompleteLevel()
-    {
-        GameManagement.Instance.ChangeAccessLevel(Int32.Parse(GameManagement.Instance.levelToAccess));
-        GameManagement.Instance.WriteStarsToLevel(Int32.Parse(GameManagement.Instance.levelToAccess), starCount);
-        UnloadLevel();
-    }
-
-    public void UnloadLevel()
-    {
-        GameManagement.Instance.levelToAccess = null;
     }
 
     // splits a CSV file into a 2D string array

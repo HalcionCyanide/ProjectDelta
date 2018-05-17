@@ -247,13 +247,13 @@
     <Compile Include="Assets\Scripts\MenuScripts\LevelAccess.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\LevelFile.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\QuitGame.cs" />
-    <Compile Include="Assets\Scripts\PlayScripts\BoxBuilder.cs" />
+    <Compile Include="Assets\Scripts\PlayScripts\AddStar.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\CameraExtensions.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\CameraHandler.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\DragShotMover.cs" />
     <Compile Include="Assets\Scripts\PlayScripts\LevelLoader.cs" />
-    <Compile Include="Assets\Scripts\PlayScripts\SmoothCamera2D.cs" />
     <Compile Include="Assets\Scripts\SingletonTemplate.cs" />
+    <Compile Include="Assets\Scripts\ToggleActive.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\PlayerData\Access.txt" />

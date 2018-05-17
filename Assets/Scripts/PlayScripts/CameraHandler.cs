@@ -1,23 +1,32 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CameraHandler : MonoBehaviour
 {
+    public Transform target;
+    public float dampTime = 0.15f;
+    float defaultZoom;
 
     public float PanSpeed = 20f;
     public float ZoomSpeedTouch = 0.1f;
     public float ZoomSpeedMouse = 0.5f;
 
+    [HideInInspector]
     public Vector2 BoundsX = new Vector2(-15f, 15f);
+    [HideInInspector]
     public Vector2 BoundsY = new Vector2(-15f, 15f);
     public Vector2 ZoomBounds = new Vector2(1f, 15f);
 
-
+    Vector3 Velocity = Vector3.zero;
     Vector3 lastPanPosition;
     int panFingerId; // Touch mode only
 
     bool wasZoomingLastFrame; // Touch mode only
     Vector2[] lastZoomPositions; // Touch mode only
+
+    void Start()
+    {
+        defaultZoom = Camera.main.orthographicSize;
+    }
 
     void Update()
     {
@@ -28,6 +37,25 @@ public class CameraHandler : MonoBehaviour
         else
         {
             HandleMouse();
+        }
+    }
+    void FixedUpdate()
+    {
+        if(target)
+        {
+            #region Lockon to target
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, defaultZoom, dampTime);
+
+            Vector3 point = Camera.main.WorldToViewportPoint(target.position);
+            Vector3 delta = target.position - Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
+            Vector3 destination = transform.position + delta;
+            transform.position = Vector3.SmoothDamp(transform.position, destination, ref Velocity, dampTime);
+
+            Vector3 copyVec = transform.position;
+            copyVec.x = Mathf.Clamp(copyVec.x, BoundsX.x, BoundsX.y);
+            copyVec.y = Mathf.Clamp(copyVec.y, BoundsY.x, BoundsY.y);
+            transform.position = copyVec;
+            #endregion
         }
     }
 
@@ -100,7 +128,7 @@ public class CameraHandler : MonoBehaviour
 
     void PanCamera(Vector3 newPanPosition)
     {
-        if(!GetComponent<SmoothCamera2D>().target)
+        if(!target)
         {
             // Determine how much to move the Camera
             Vector3 offset = Camera.main.ScreenToViewportPoint(lastPanPosition - newPanPosition);
@@ -122,11 +150,31 @@ public class CameraHandler : MonoBehaviour
 
     void ZoomCamera(float offset, float speed)
     {
-        if (offset == 0 || GetComponent<SmoothCamera2D>().target)
+        if (offset == 0 || target)
         {
             return;
         }
 
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
+    }
+
+    public void SetBounds(Vector2 boundX, Vector2 boundY)
+    {
+        BoundsX = boundX;
+        BoundsY = boundY;
+    }
+
+    public void FindTarget()
+    {
+        if (!target)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+            target.transform.GetComponent<DragShotMover>().selfSelected = true;
+        }
+        else
+        {
+            target.transform.GetComponent<DragShotMover>().selfSelected = false;
+            target = null;
+        }
     }
 }

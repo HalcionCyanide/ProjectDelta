@@ -19,6 +19,9 @@ public class GameManagement : SingletonTemplate<GameManagement> {
     int defaultLevel = 1;
     readonly int numberOfLevels = 15;
 
+    [HideInInspector]
+    public int starCount = 0;
+
     // Use this for initialization
     void Awake () {
         #region CROSSPLATFORM
@@ -79,5 +82,17 @@ public class GameManagement : SingletonTemplate<GameManagement> {
         }
         else
             return;
+    }
+
+    public void CompleteLevel()
+    {
+        ChangeAccessLevel(Int32.Parse(levelToAccess));
+        WriteStarsToLevel(Int32.Parse(levelToAccess), starCount);
+        UnloadLevel();
+    }
+
+    public void UnloadLevel()
+    {
+        levelToAccess = null;
     }
 }

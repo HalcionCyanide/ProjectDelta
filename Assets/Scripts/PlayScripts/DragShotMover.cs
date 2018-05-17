@@ -9,6 +9,7 @@ public class DragShotMover : MonoBehaviour
     public float minimumShootPower = 100f;
 
     GameObject powerArrow;
+    Text waitText;
 
     [HideInInspector]
     public Vector2 startLocation;
@@ -17,31 +18,44 @@ public class DragShotMover : MonoBehaviour
     [HideInInspector]
     public Vector2 mockLocation;
 
-
     Vector2 clickLocation;
+    Vector2 resetLocation;
 
     private void Start()
     {
         //Initialize all variables.
         canDrag = false;
-        selfSelected = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        selfSelected = true;
         powerArrow = transform.GetChild(0).gameObject;
+        waitText = GameObject.FindGameObjectWithTag("UI_WAIT").GetComponent<Text>();
+    }
+
+    private void OnBecameInvisible()
+    {
+        transform.position = resetLocation;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     private void Update()
     {
         #region Find out if the player is allowed to move.
         //usually use extremely small numbers, like 0 or < 0.1
-        if (selfSelected && GetComponent<Rigidbody2D>().velocity.magnitude == 0) //< 0.1f)
+        if (Camera.main.GetComponent<CameraHandler>().target)
         {
-            canDrag = true;
+            if (selfSelected && GetComponent<Rigidbody2D>().velocity.magnitude == 0) //< 0.1f)
+            {
+                canDrag = true;
+                waitText.enabled = false;
+            }
+            else
+            {
+                canDrag = false;
+                powerArrow.GetComponent<Renderer>().enabled = false;
+                waitText.enabled = true;
+            }
         }
         else
-        {
-            canDrag = false;
-            powerArrow.GetComponent<Renderer>().enabled = false;
-        }
+            waitText.enabled = false;
         #endregion
     }
 
@@ -78,7 +92,7 @@ public class DragShotMover : MonoBehaviour
                         Camera.main.ScreenToWorldPoint(clickLocation).y),
                     Vector2.zero,
                     0);
-                if(hit)
+                if(hit && hit.collider.CompareTag("Player"))
                 {
                     #region Perform all drag operations here.
                     if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
@@ -149,6 +163,7 @@ public class DragShotMover : MonoBehaviour
 
     void Feuer()
     {
+        resetLocation = transform.position;
         Vector2 shootDirection = -(releaseLocation - startLocation).normalized;
 
         float shootPower = Vector2.Distance(releaseLocation,startLocation);

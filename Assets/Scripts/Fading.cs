@@ -13,7 +13,7 @@ public class Fading : MonoBehaviour
 
     public void StartFade(string levelName)
     {
-        StartCoroutine(LoadScene(levelName));
+        StartCoroutine(LoadScene(levelName));   
         //level loader uses the index if needed.
     }
 

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 20283865388860006}
   - component: {fileID: 124468077740001702}
   - component: {fileID: 81921678827245160}
-  - component: {fileID: 114972677042576948}
   - component: {fileID: 114767853734693662}
   - component: {fileID: 114395957301072720}
   m_Layer: 0
@@ -115,25 +114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1ddf263d309bb4392dbf98481c5783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  dampTime: 0.15
   PanSpeed: 10
   ZoomSpeedTouch: 0.2
   ZoomSpeedMouse: 1
   BoundsX: {x: -30, y: 30}
   BoundsY: {x: -30, y: 30}
   ZoomBounds: {x: 1, y: 15}
---- !u!114 &114972677042576948
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1044700221949366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 257b15e0cfed5e948a2b33c6432fa3d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dampTime: 0.15
-  target: {fileID: 0}
 --- !u!124 &124468077740001702
 Behaviour:
   m_ObjectHideFlags: 1
