@@ -166,17 +166,15 @@ public class DragShotMover : MonoBehaviour
         resetLocation = transform.position;
         Vector2 shootDirection = -(releaseLocation - startLocation).normalized;
 
-        float shootPower = Vector2.Distance(releaseLocation,startLocation);
+        float shootPower = Vector2.Distance(releaseLocation,startLocation) * GameManagement.Instance.DragSensitivity;
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
-
-    
 
         GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDirection.x, shootDirection.y) * shootPower);
     }
 
     void ScaleArrow()
     {
-        float shootPower = Vector2.Distance(mockLocation, startLocation);
+        float shootPower = Vector2.Distance(mockLocation, startLocation) * GameManagement.Instance.DragSensitivity;
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
         //scale factor is power represented as a percentage of power range, 

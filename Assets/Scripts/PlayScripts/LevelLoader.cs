@@ -25,7 +25,7 @@ public class LevelLoader : MonoBehaviour {
     public int starCount;
 
     // Use this for initialization
-    void Awake () {
+    void Start () {
         if (!String.IsNullOrEmpty(GameManagement.Instance.levelToAccess))
         {
             //load the level file to a storage space in memory
@@ -37,6 +37,8 @@ public class LevelLoader : MonoBehaviour {
             GameManagement.Instance.levelToAccess = levelOverride;
         }
         starCount = 0;
+        Time.timeScale = 1;
+        GameManagement.Instance.starCount = starCount;
         BuildLevel();
 	}
 

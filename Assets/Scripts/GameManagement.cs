@@ -18,6 +18,8 @@ public class GameManagement : SingletonTemplate<GameManagement> {
 
     int defaultLevel = 1;
     readonly int numberOfLevels = 15;
+    [HideInInspector]
+    public int DragSensitivity = 3;
 
     [HideInInspector]
     public int starCount = 0;

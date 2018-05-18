@@ -13,6 +13,7 @@ public class Fading : MonoBehaviour
 
     public void StartFade(string levelName)
     {
+        StopAllCoroutines();
         StartCoroutine(LoadScene(levelName));   
         //level loader uses the index if needed.
     }
@@ -20,11 +21,11 @@ public class Fading : MonoBehaviour
     IEnumerator LoadScene(string levelName)
     {
         splashImage.enabled = true;
-        splashImage.canvasRenderer.SetAlpha(0.0f);
+        //splashImage.canvasRenderer.SetAlpha(0.0f);
 
         FadeIn();
-        yield return new WaitForSeconds(fadeInTime);
-        splashImage.enabled = false;
+        yield return new WaitForSecondsRealtime(fadeInTime);
+        //splashImage.enabled = false;
         SceneManager.LoadScene(levelName);
     }
 
@@ -36,27 +37,27 @@ public class Fading : MonoBehaviour
             splashImage.canvasRenderer.SetAlpha(0.0f);
 
             FadeIn();
-            yield return new WaitForSeconds(fadeInTime);
+            yield return new WaitForSecondsRealtime(fadeInTime);
             FadeOut();
-            yield return new WaitForSeconds(fadeOutTime);
+            yield return new WaitForSecondsRealtime(fadeOutTime);
             SceneManager.LoadScene(loadLevel);
         }
         else
         {
             splashImage.enabled = true;
             FadeOut();
-            yield return new WaitForSeconds(fadeOutTime);
+            yield return new WaitForSecondsRealtime(fadeOutTime);
             splashImage.enabled = false;
         }
     }
 
     void FadeIn()
     {
-        splashImage.CrossFadeAlpha(1.0f, fadeInTime, false);
+        splashImage.CrossFadeAlpha(1.0f, fadeInTime, true);
     }
 
     void FadeOut()
     {
-        splashImage.CrossFadeAlpha(0.0f, fadeOutTime, false);
+        splashImage.CrossFadeAlpha(0.0f, fadeOutTime, true);
     }
 }

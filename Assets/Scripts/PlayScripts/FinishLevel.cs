@@ -4,7 +4,7 @@ public class FinishLevel : MonoBehaviour
 {
     GameObject endPanel;
 
-    private void Awake()
+    private void Start()
     {
         endPanel = GameObject.FindGameObjectWithTag("UI_FINISH");
         endPanel.SetActive(false);
