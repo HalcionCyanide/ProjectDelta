@@ -11,9 +11,9 @@ public class CameraHandler : MonoBehaviour
     public float ZoomSpeedMouse = 0.5f;
 
     [HideInInspector]
-    public Vector2 BoundsX = new Vector2(-15f, 15f);
+    public Vector2 BoundsX;
     [HideInInspector]
-    public Vector2 BoundsY = new Vector2(-15f, 15f);
+    public Vector2 BoundsY;
     public Vector2 ZoomBounds = new Vector2(1f, 15f);
 
     Vector3 Velocity = Vector3.zero;
@@ -162,19 +162,5 @@ public class CameraHandler : MonoBehaviour
     {
         BoundsX = boundX;
         BoundsY = boundY;
-    }
-
-    public void FindTarget()
-    {
-        if (!target)
-        {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-            target.transform.GetComponent<DragShotMover>().selfSelected = true;
-        }
-        else
-        {
-            target.transform.GetComponent<DragShotMover>().selfSelected = false;
-            target = null;
-        }
     }
 }

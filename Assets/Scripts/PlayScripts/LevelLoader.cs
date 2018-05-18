@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 using System.Linq;
 
 public class LevelLoader : MonoBehaviour {
@@ -23,6 +22,11 @@ public class LevelLoader : MonoBehaviour {
     //level completion info:
     [HideInInspector]
     public int starCount;
+
+    [HideInInspector]
+    public int width;
+    [HideInInspector]
+    public int height;
 
     // Use this for initialization
     void Start () {
@@ -49,8 +53,8 @@ public class LevelLoader : MonoBehaviour {
         LevelLayoutArray = SplitCsvGrid(levelData.text);
         textRow = new string[LevelLayoutArray.GetUpperBound(0)];
 
-        int height = ((LevelLayoutArray.Length / textRow.Length) - 1);
-        int width = textRow.Length - 1;
+        height = ((LevelLayoutArray.Length / textRow.Length) - 1);
+        width = textRow.Length - 1;
 
         float cameraHalfWidth = Camera.main.OrthographicBounds().size.x / 2;
         float cameraHalfHeight = Camera.main.OrthographicBounds().size.y / 2;

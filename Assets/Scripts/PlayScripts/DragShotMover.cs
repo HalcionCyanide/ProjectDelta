@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class DragShotMover : MonoBehaviour
 {
-    public bool canDrag;
-    public bool selfSelected;
+    bool selfSelected;
+    bool canDrag;
+
     public float maximumShootPower = 1000f;
     public float minimumShootPower = 100f;
 
@@ -24,75 +25,52 @@ public class DragShotMover : MonoBehaviour
     private void Start()
     {
         //Initialize all variables.
-        canDrag = false;
         selfSelected = true;
         powerArrow = transform.GetChild(0).gameObject;
         waitText = GameObject.FindGameObjectWithTag("UI_WAIT").GetComponent<Text>();
     }
 
-    private void OnBecameInvisible()
+    private void FixedUpdate()
     {
-        transform.position = resetLocation;
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-    }
+        selfSelected = Camera.main.GetComponent<CameraHandler>().target ? true : false;
 
-    private void Update()
-    {
-        #region Find out if the player is allowed to move.
-        //usually use extremely small numbers, like 0 or < 0.1
-        if (Camera.main.GetComponent<CameraHandler>().target)
+        if (transform.position.x > GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelLoader>().width + 1 ||
+            transform.position.x < -1 ||
+            transform.position.y > GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelLoader>().height + 1 ||
+            transform.position.y < -1)
         {
-            if (selfSelected && GetComponent<Rigidbody2D>().velocity.magnitude == 0) //< 0.1f)
+            transform.position = resetLocation;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+
+        /*
+         logic flow:
+         if the camera has no target, clicking on the player makes it the target.
+         if the camera has a target, clicking anything OTHER than the player removes the target
+         */
+
+        if (!Camera.main.GetComponent<CameraHandler>().target)
+        {
+            RaycastHit2D hit = CheckIfClicked();
+            if (hit && (hit.collider.gameObject == gameObject))
             {
-                canDrag = true;
-                waitText.enabled = false;
-            }
-            else
-            {
-                canDrag = false;
-                powerArrow.GetComponent<Renderer>().enabled = false;
-                waitText.enabled = true;
+                Camera.main.GetComponent<CameraHandler>().target = transform;
             }
         }
         else
-            waitText.enabled = false;
-        #endregion
-    }
-
-    private void FixedUpdate()
-    {
-        //Self is selected, camera is focused on you.
-        if(selfSelected)
         {
 
-            //If I am allowed movement...
-            if(canDrag)
-            {
-                ///Very important!
-                #region Define the touch position (CrossPlatform)
-                if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
-                {
-                    if (Input.touchCount > 0)
-                    {
-                        clickLocation = Input.GetTouch(0).position;
-                    }
-                }
-                else
-                {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        clickLocation = Input.mousePosition;
-                    }
-                }
-                #endregion
+        }
 
-                RaycastHit2D hit = Physics2D.Raycast(
-                    new Vector2(
-                        Camera.main.ScreenToWorldPoint(clickLocation).x,
-                        Camera.main.ScreenToWorldPoint(clickLocation).y),
-                    Vector2.zero,
-                    0);
-                if(hit && hit.collider.CompareTag("Player"))
+        //Self is selected, camera is focused on you.
+        if (selfSelected)
+        {
+            //If I am allowed movement...
+            if (canDrag)
+            {
+                RaycastHit2D hit = CheckIfClicked();
+                ///Very important!
+                if (hit && (hit.collider.gameObject == gameObject))
                 {
                     #region Perform all drag operations here.
                     if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
@@ -103,11 +81,17 @@ public class DragShotMover : MonoBehaviour
                     {
                         HandleDrag();
                     }
-                    //Drag Code here.
-                    
                     #endregion
                 }
             }
+            else
+            {
+                powerArrow.GetComponent<Renderer>().enabled = false;
+            }
+        }
+        else
+        {
+            powerArrow.GetComponent<Renderer>().enabled = false;
         }
     }
 
@@ -170,6 +154,35 @@ public class DragShotMover : MonoBehaviour
         shootPower = Mathf.Clamp(shootPower, minimumShootPower, maximumShootPower);
 
         GetComponent<Rigidbody2D>().AddForce(new Vector2(shootDirection.x, shootDirection.y) * shootPower);
+    }
+
+    RaycastHit2D CheckIfClicked()
+    {
+        #region Define the touch position (CrossPlatform)
+        if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
+        {
+            if (Input.touchCount > 0)
+            {
+                clickLocation = Input.GetTouch(0).position;
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                clickLocation = Input.mousePosition;
+            }
+        }
+        #endregion
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            new Vector2(
+                Camera.main.ScreenToWorldPoint(clickLocation).x,
+                Camera.main.ScreenToWorldPoint(clickLocation).y),
+            Vector2.zero,
+            0);
+
+        return hit;
     }
 
     void ScaleArrow()
