@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -39,6 +39,7 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -113,12 +113,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &13822128 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114600417636205108, guid: 42494b658811faa4a84bf317bfe060a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1411393123}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &236243514 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114466791630931368, guid: 42494b658811faa4a84bf317bfe060a0,
     type: 2}
   m_PrefabInternal: {fileID: 1411393123}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &608684007 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114767853734693662, guid: ccd0e91cb34fecd4ab34631814667571,
+    type: 2}
+  m_PrefabInternal: {fileID: 753447748}
+  m_Script: {fileID: 11500000, guid: 0b1ddf263d309bb4392dbf98481c5783, type: 3}
 --- !u!1001 &753447748
 Prefab:
   m_ObjectHideFlags: 0
@@ -158,6 +170,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114767853734693662, guid: ccd0e91cb34fecd4ab34631814667571,
+        type: 2}
+      propertyPath: lockOnButton
+      value: 
+      objectReference: {fileID: 13822128}
     - target: {fileID: 114395957301072720, guid: ccd0e91cb34fecd4ab34631814667571,
         type: 2}
       propertyPath: splashImage
@@ -268,12 +285,17 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114102478896509312, guid: 42494b658811faa4a84bf317bfe060a0,
+    - target: {fileID: 114972641828485354, guid: 42494b658811faa4a84bf317bfe060a0,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 608684007}
+    - target: {fileID: 114339402540869608, guid: 42494b658811faa4a84bf317bfe060a0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1678681061}
-    - target: {fileID: 114367727318119880, guid: 42494b658811faa4a84bf317bfe060a0,
+    - target: {fileID: 114602651471751976, guid: 42494b658811faa4a84bf317bfe060a0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -283,12 +305,12 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1021508032}
-    - target: {fileID: 114602651471751976, guid: 42494b658811faa4a84bf317bfe060a0,
+    - target: {fileID: 114367727318119880, guid: 42494b658811faa4a84bf317bfe060a0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1678681061}
-    - target: {fileID: 114339402540869608, guid: 42494b658811faa4a84bf317bfe060a0,
+    - target: {fileID: 114102478896509312, guid: 42494b658811faa4a84bf317bfe060a0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraHandler : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class CameraHandler : MonoBehaviour
 
     bool wasZoomingLastFrame; // Touch mode only
     Vector2[] lastZoomPositions; // Touch mode only
+    public Text lockOnButton;
 
     void Start()
     {
@@ -162,5 +164,22 @@ public class CameraHandler : MonoBehaviour
     {
         BoundsX = boundX;
         BoundsY = boundY;
+    }
+
+    public void FindPlayer()
+    {
+        if (!target)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+            target.GetComponent<DragShotMover>().startLocation = Vector2.zero;
+            target.GetComponent<DragShotMover>().mockLocation = Vector2.zero;
+            target.GetComponent<DragShotMover>().releaseLocation = Vector2.zero;
+            lockOnButton.text = "FREECAM";
+        }
+        else
+        {
+            target = null;
+            lockOnButton.text = "LOCKON";
+        }
     }
 }

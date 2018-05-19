@@ -15,6 +15,8 @@ public class FinishLevel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            Camera.main.GetComponent<CameraHandler>().target = transform;
             GameManagement.Instance.CompleteLevel();
             gameObject.GetComponent<Collider2D>().enabled = false;
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDelta", "ProjectDelta.csproj", "{75788959-B13A-FF5C-9D1D-3E4FC5D3ABDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDelta", "Assembly-CSharp.csproj", "{716A1119-9074-191F-927E-A867D0183F57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{75788959-B13A-FF5C-9D1D-3E4FC5D3ABDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75788959-B13A-FF5C-9D1D-3E4FC5D3ABDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75788959-B13A-FF5C-9D1D-3E4FC5D3ABDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75788959-B13A-FF5C-9D1D-3E4FC5D3ABDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{716A1119-9074-191F-927E-A867D0183F57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{716A1119-9074-191F-927E-A867D0183F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{716A1119-9074-191F-927E-A867D0183F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{716A1119-9074-191F-927E-A867D0183F57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

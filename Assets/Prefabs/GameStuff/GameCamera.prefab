@@ -122,6 +122,7 @@ MonoBehaviour:
   BoundsX: {x: -30, y: 30}
   BoundsY: {x: -30, y: 30}
   ZoomBounds: {x: 1, y: 15}
+  lockOnButton: {fileID: 0}
 --- !u!124 &124468077740001702
 Behaviour:
   m_ObjectHideFlags: 1

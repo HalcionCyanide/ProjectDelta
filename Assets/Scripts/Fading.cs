@@ -21,7 +21,8 @@ public class Fading : MonoBehaviour
     IEnumerator LoadScene(string levelName)
     {
         splashImage.enabled = true;
-        //splashImage.canvasRenderer.SetAlpha(0.0f);
+        if(!(splashImage.canvasRenderer.GetAlpha() < 1f && splashImage.canvasRenderer.GetAlpha() > 0f))
+            splashImage.canvasRenderer.SetAlpha(0.0f);
 
         FadeIn();
         yield return new WaitForSecondsRealtime(fadeInTime);
