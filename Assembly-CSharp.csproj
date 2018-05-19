@@ -78,11 +78,11 @@
     <Compile Include="Assets\Scripts\SingletonTemplate.cs" />
     <Compile Include="Assets\Scripts\ToggleActive.cs" />
     <None Include="Assets\Resources\PlayerData\Access.txt" />
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Users/TeiKiyohira/Documents/ProjectDelta/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Users/TeiKiyohira/Documents/ProjectDelta/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>D:/Users/TeiKiyohira/Documents/ProjectDelta/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
